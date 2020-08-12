@@ -1,6 +1,6 @@
 import { Document } from 'mongoose'
 export class Vaga extends Document {
-    space: string
+    space: number
     busy: boolean
     carId: string
 }

@@ -9,12 +9,14 @@ export class VagasService {
 
     }
     async getAll(): Promise<Vaga[]> {
-        console.log('FOI')
-        console.log(await this.vagaModel.find().exec())
         return await this.vagaModel.find().exec();
     }
     async save(vaga: Vaga):Promise<Vaga> {
         const vagaSaved = new this.vagaModel(vaga)
         return await vagaSaved.save();
+    }
+    async getLastBusySpace(): Promise<number>{
+        const obj = await this.vagaModel.find().sort('-space').limit(1).exec()
+        return obj[0].space;
     }
 }
